@@ -3,13 +3,14 @@ language: perl
 sudo: false
 
 perl:
-   - "5.12"
+   - "5.8"
    
 install:
    - unset PERL_CPANM_OPT
    - cpanm --mirror http://cpan.stratopan.com --quiet --notest Dist::Zilla --skip-satisfied
-   - dzil authordeps | cpanm --mirror http://cpan.stratopan.com --quiet --notest
+   - dzil authordeps | cpanm --mirror http://cpan.stratopan.com --quiet --notest --skip-satisfied
    - dzil listdeps   | cpanm --mirror http://cpan.stratopan.com --quiet --notest 
+   
 
 script:
    - export HARNESS_OPTIONS='j:c'
